@@ -28,11 +28,12 @@ head(abalones_df)
 
 ```
 
-b.
+b. The data contains information on three different sexes of abalone. Report the number of observations belonging to each sex.
 
 ```{r}
-1 + 1
+table(abalones_df$Sex)
 ```
+In this data set there are 1307 females, 1528 males, and 1342 infants.
 
 c.
 
