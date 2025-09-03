@@ -1,0 +1,121 @@
+---
+title: "ps 506 yeo"
+format: html
+editor: visual
+toc: true
+---
+
+## Problem 1
+
+Download the data set about abalones (a type of sea snail) and do the following:
+
+a. Import the data into a data.frame and give the appropriate column names.
+
+```{r}
+1 + 1
+```
+
+
+b.
+
+```{r}
+1 + 1
+```
+
+c.
+
+i. 
+```{r}
+1 + 1
+```
+
+ii.
+```{r}
+1 + 1
+```
+
+iii.
+```{r}
+1 + 1
+```
+
+iv.
+```{r}
+1 + 1
+```
+
+d.
+
+```{r}
+1 + 1
+```
+
+e.
+
+```{r}
+1 + 1
+```
+
+## Problem 2
+
+a. 
+
+```{r}
+1 + 1
+```
+
+b.
+
+```{r}
+2 * 2
+```
+
+c.
+
+```{r}
+1 + 1
+```
+
+d.
+
+```{r}
+1 + 1
+```
+
+e.
+
+```{r}
+1 + 1
+```
+
+f.
+
+```{r}
+1 + 1
+```
+
+h.
+
+```{r}
+1 + 1
+```
+
+## Problem 3
+
+a.
+
+```{r}
+1 + 1
+```
+
+b.
+
+```{r}
+1 + 1
+```
+
+c.
+
+```{r}
+1 + 1
+```
