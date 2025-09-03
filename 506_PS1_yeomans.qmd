@@ -1,22 +1,22 @@
 ---
-title: "STATS 506 - Problem Set #1: Due September 12"
-author: Sydney Yeomans
+title: "STATS 506 - Problem Set #1"
+author: "Sydney Yeomans"
 format: html
 editor: visual
-toc: true
 ---
 
 ## Problem 1
 
 Download the data set about abalones (a type of sea snail) and do the following:
 
-a. Import the data into a data.frame and give the appropriate column names.
+a.  Import the data into a data.frame and give the appropriate column names.
 
 ```{r}
 #| echo: true
 abalones_df <- read.csv("abalone.data", header = FALSE)
 head(abalones_df)
 ```
+
 ```{r}
 #| echo: true
 #Rename the columns based on what is in the abalone name file, names of variables are the following:
@@ -28,17 +28,21 @@ head(abalones_df)
 
 ```
 
-b. The data contains information on three different sexes of abalone. Report the number of observations belonging to each sex.
+b.  The data contains information on three different sexes of abalone. Report the number of observations belonging to each sex.
 
 ```{r}
+#| echo: true
 table(abalones_df$Sex)
 ```
+
 In this data set there are 1307 females, 1528 males, and 1342 infants.
 
-c.
+c.  
 
-i. Which weight has the highest correlation with rings?
+d.  Which weight has the highest correlation with rings?
+
 ```{r}
+#| echo: true
 #There are four different weights so need four correlations 
 whole_cor <- cor(abalones_df$Whole_weight, abalones_df$Rings)
 print(whole_cor)
@@ -52,95 +56,117 @@ print(viscera_cor)
 shell_cor <- cor(abalones_df$Shell_weight, abalones_df$Rings)
 print(shell_cor)
 ```
-The weight with the highest correlation to rings is shell weight with `r shell_cor`.
+
+The weight with the highest correlation to rings is shell weight with a value of $.627$.
 
 ii. For that weight, which sex has the highest correlation?
+
 ```{r}
-1 + 1
+#| echo: true
+#Split the data set into three separate ones based on sex
+males <- abalones_df[abalones_df$Sex == "M", ]
+females <- abalones_df[abalones_df$Sex == "F", ]
+infants <- abalones_df[abalones_df$Sex == "I", ]
+
+#Now we can do the correlations for each for shell weight and rings
+male_cor <- cor(males$Shell_weight, males$Rings)
+print(male_cor)
+female_cor <- cor(females$Shell_weight, females$Rings)
+print(female_cor)
+infant_cor <- cor(infants$Shell_weight, infants$Rings)
+print(infant_cor)
+
 ```
 
+The sex with the highest correlation between shell weight and rings is infants.
+
+Source: <https://stackoverflow.com/questions/43347110/how-to-create-new-dataframe-from-existing-dataframe-selecting-rows-matching-two>
+
 iii. What are the weights of the abalone with the most rings?
+
 ```{r}
-1 + 1
+#| echo: true
+
 ```
 
 iv. What percentage of abalones have a viscera weight larger than their shell weight?
+
 ```{r}
-1 + 1
+#| echo: true
 ```
 
-d.
+d.  
 
 ```{r}
-1 + 1
+#| echo: true
 ```
 
-e.
+e.  
 
 ```{r}
-1 + 1
+#| echo: true
 ```
 
 ## Problem 2
 
-a. 
+a.  
 
 ```{r}
-1 + 1
+#| echo: true
 ```
 
-b.
+b.  
 
 ```{r}
-2 * 2
+#| echo: true
 ```
 
-c.
+c.  
 
 ```{r}
-1 + 1
+#| echo: true
 ```
 
-d.
+d.  
 
 ```{r}
-1 + 1
+#| echo: true
 ```
 
-e.
+e.  
 
 ```{r}
-1 + 1
+#| echo: true
 ```
 
-f.
+f.  
 
 ```{r}
-1 + 1
+#| echo: true
 ```
 
-h.
+h.  
 
 ```{r}
-1 + 1
+#| echo: true
 ```
 
 ## Problem 3
 
-a.
+a.  
 
 ```{r}
-1 + 1
+#| echo: true
 ```
 
-b.
+b.  
 
 ```{r}
-1 + 1
+#| echo: true
 ```
 
-c.
+c.  
 
 ```{r}
-1 + 1
+#| echo: true
 ```
