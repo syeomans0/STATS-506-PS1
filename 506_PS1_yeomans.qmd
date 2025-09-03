@@ -37,22 +37,34 @@ In this data set there are 1307 females, 1528 males, and 1342 infants.
 
 c.
 
-i. 
+i. Which weight has the highest correlation with rings?
+```{r}
+#There are four different weights so need four correlations 
+whole_cor <- cor(abalones_df$Whole_weight, abalones_df$Rings)
+print(whole_cor)
+
+shucked_cor <- cor(abalones_df$Shucked_weight, abalones_df$Rings)
+print(shucked_cor)
+
+viscera_cor <- cor(abalones_df$Viscera_weight, abalones_df$Rings)
+print(viscera_cor)
+
+shell_cor <- cor(abalones_df$Shell_weight, abalones_df$Rings)
+print(shell_cor)
+```
+The weight with the highest correlation to rings is shell weight with `r shell_cor`.
+
+ii. For that weight, which sex has the highest correlation?
 ```{r}
 1 + 1
 ```
 
-ii.
+iii. What are the weights of the abalone with the most rings?
 ```{r}
 1 + 1
 ```
 
-iii.
-```{r}
-1 + 1
-```
-
-iv.
+iv. What percentage of abalones have a viscera weight larger than their shell weight?
 ```{r}
 1 + 1
 ```
