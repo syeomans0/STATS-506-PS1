@@ -20,9 +20,12 @@ head(abalones_df)
 ```{r}
 #| echo: true
 #Rename the columns based on what is in the abalone name file, names of variables are the following:
-#V1 = Sex, V2 = Length, V3 = Diameter, V4 = Height, V5 = Whole weight, V6 = Shucked weight, V7 = Viscera weight, V8 = Shell weight, V9 = Rings
+#V1 = Sex, V2 = Length, V3 = Diameter, V4 = Height 
+#V5 = Whole weight, V6 = Shucked weight, V7 = Viscera weight
+#V8 = Shell weight, V9 = Rings
 
-colnames(abalones_df) <- c("Sex", "Length", "Diameter", "Height", "Whole_weight", "Shucked_weight", "Viscera_weight", "Shell_weight", "Rings")
+colnames(abalones_df) <- c("Sex", "Length", "Diameter", "Height", 
+                           "Whole_weight", "Shucked_weight", "Viscera_weight", "Shell_weight", "Rings")
 
 head(abalones_df)
 
@@ -39,7 +42,7 @@ In this data set there are 1307 females, 1528 males, and 1342 infants.
 
 c.  
 
-d.  Which weight has the highest correlation with rings?
+    i.  Which weight has the highest correlation with rings?
 
 ```{r}
 #| echo: true
@@ -87,7 +90,16 @@ iii. What are the weights of the abalone with the most rings?
 ```{r}
 #| echo: true
 
+most_rings <- abalones_df[abalones_df$Rings == max(abalones_df$Rings),]
+print(most_rings)
+
 ```
+
+The most number of rings for an abalone in this data set is $29$. The weights of the abalone with this many rings is in the table above, but just in case I will list them out as well: whole_weight $=1.8075$, shucked_weight $=.7055$, viscera_weight $=.3215$, and shell_weight $=.475$.
+
+Note: originally had the `max` function on its own but the output looked bad so I moved it to the inside of the new data frame I created.
+
+Source: <https://stackoverflow.com/questions/24212739/how-to-find-the-highest-value-of-a-column-in-a-data-frame-in-r>
 
 iv. What percentage of abalones have a viscera weight larger than their shell weight?
 
