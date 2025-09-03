@@ -1,5 +1,6 @@
 ---
-title: "ps 506 yeo"
+title: "STATS 506 - Problem Set #1: Due September 12"
+author: Sydney Yeomans
 format: html
 editor: visual
 toc: true
@@ -12,9 +13,20 @@ Download the data set about abalones (a type of sea snail) and do the following:
 a. Import the data into a data.frame and give the appropriate column names.
 
 ```{r}
-1 + 1
+#| echo: true
+abalones_df <- read.csv("abalone.data", header = FALSE)
+head(abalones_df)
 ```
+```{r}
+#| echo: true
+#Rename the columns based on what is in the abalone name file, names of variables are the following:
+#V1 = Sex, V2 = Length, V3 = Diameter, V4 = Height, V5 = Whole weight, V6 = Shucked weight, V7 = Viscera weight, V8 = Shell weight, V9 = Rings
 
+colnames(abalones_df) <- c("Sex", "Length", "Diameter", "Height", "Whole_weight", "Shucked_weight", "Viscera_weight", "Shell_weight", "Rings")
+
+head(abalones_df)
+
+```
 
 b.
 
