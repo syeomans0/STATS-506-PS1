@@ -110,7 +110,7 @@ viscera_greater_shell
 
 #Total number of abalones are the number of observations in the data frame which is 4177
 percentage <- 272/4177
-percentage
+percentage * 100
 ```
 The percentage of abalones that have a viscera weight larger than their shell weight is $6.51\%$.
 
@@ -145,7 +145,14 @@ e. Carry out a series of t-tests to examine whether the number of rings differs 
 
 ```{r}
 #| echo: true
+#Have to compare M to F, M to I, and F to I
+t.test(abalones_df$Rings[abalones_df$Sex == "M"], abalones_df$Rings[abalones_df$Sex == "F"])
+
+t.test(abalones_df$Rings[abalones_df$Sex == "M"], abalones_df$Rings[abalones_df$Sex == "I"])
+
+t.test(abalones_df$Rings[abalones_df$Sex == "F"], abalones_df$Rings[abalones_df$Sex == "I"])
 ```
+From the t-test it can be seen that there is evidence that the number of rings differs across all three sexes, as seen from the very small p-values. 
 
 ## Problem 2
 
