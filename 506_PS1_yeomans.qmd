@@ -156,47 +156,67 @@ From the t-test it can be seen that there is evidence that the number of rings d
 
 ## Problem 2
 
-a.  
+a. Import the food expenditures data frame
+
+```{r}
+#| echo: true
+food_exp_df <- read.csv("food_expenditure.csv")
+head(food_exp_df)
+```
+
+b. Clean up the variable names by simplifying them.
+
+```{r}
+#| echo: true
+colnames(food_exp_df) <- c("ID", "Age", "Household_size", "State", "Currency", 
+                           "Total_food_expenditure", "Grocery_cost", 
+                           "Dining_out_cost", "Miscellaneous_cost", "Times_dine_out", 
+                           "Alcohol", "Food_assist")
+head(food_exp_df)
+```
+
+c. Restrict the data to those paying in US dollars (USD). Show that it worked by confirming the number of observations before and after restricting the data.
+
+```{r}
+#| echo: true
+dim(food_exp_df)
+
+#Restrict to only USD
+food_exp_df <- food_exp_df[food_exp_df$Currency == "USD",]
+dim(food_exp_df)
+```
+For each of the following variables, clean them by removing any row with inappropriate data. For each variable, explain your rules for eliminating rows.
+
+d. The variable related to age.
 
 ```{r}
 #| echo: true
 ```
 
-b.  
+e. The variable related to state. 
 
 ```{r}
 #| echo: true
 ```
 
-c.  
+f. The four variables related to food expenditures.
 
 ```{r}
 #| echo: true
 ```
 
-d.  
+g. The variable related to number of times dining out.
 
 ```{r}
 #| echo: true
 ```
 
-e.  
+h. Report your final number of observations after this cleaning.
 
 ```{r}
 #| echo: true
 ```
 
-f.  
-
-```{r}
-#| echo: true
-```
-
-h.  
-
-```{r}
-#| echo: true
-```
 
 ## Problem 3
 
