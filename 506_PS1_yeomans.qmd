@@ -105,7 +105,14 @@ iv. What percentage of abalones have a viscera weight larger than their shell we
 
 ```{r}
 #| echo: true
+viscera_greater_shell <- sum(abalones_df$Viscera_weight > abalones_df$Shell_weight)
+viscera_greater_shell
+
+#Total number of abalones are the number of observations in the data frame which is 4177
+percentage <- 272/4177
+percentage
 ```
+The percentage of abalones that have a viscera weight larger than their shell weight is $6.51\%$.
 
 d. Create a table of correlations between weights and rings, within each sex. The columns should be the four weights, and the rows should be the sexes. 
 
@@ -132,6 +139,7 @@ row.names(cor_table) <- c("Males", "Females", "Infants")
 cor_table
   
 ```
+This is a table that looks at the correlation between the four different weights of the data set and rings broken down by the three different sexes. 
 
 e. Carry out a series of t-tests to examine whether the number of rings differs across the three sexes. Present the R output and interpret the results. 
 
