@@ -72,12 +72,12 @@ females <- abalones_df[abalones_df$Sex == "F", ]
 infants <- abalones_df[abalones_df$Sex == "I", ]
 
 #Now we can do the correlations for each for shell weight and rings
-male_cor <- cor(males$Shell_weight, males$Rings)
-print(male_cor)
-female_cor <- cor(females$Shell_weight, females$Rings)
-print(female_cor)
-infant_cor <- cor(infants$Shell_weight, infants$Rings)
-print(infant_cor)
+male_cor_shell <- cor(males$Shell_weight, males$Rings)
+print(male_cor_shell)
+female_cor_shell <- cor(females$Shell_weight, females$Rings)
+print(female_cor_shell)
+infant_cor_shell <- cor(infants$Shell_weight, infants$Rings)
+print(infant_cor_shell)
 
 ```
 
@@ -111,6 +111,26 @@ d. Create a table of correlations between weights and rings, within each sex. Th
 
 ```{r}
 #| echo: true
+#Have to find the correlations for each of the other weights: whole, shucked, and viscera within each sex
+males_cor_whole <- cor(males$Whole_weight, males$Rings)
+females_cor_whole <- cor(females$Whole_weight, females$Rings)
+infants_cor_whole <- cor(infants$Whole_weight, infants$Rings)
+  
+males_cor_shucked <- cor(males$Shucked_weight, males$Rings)
+females_cor_shucked <- cor(females$Shucked_weight, females$Rings)
+infants_cor_shucked <- cor(infants$Shucked_weight, infants$Rings)
+
+males_cor_viscera <- cor(males$Viscera_weight, males$Rings)
+females_cor_viscera <- cor(females$Viscera_weight, females$Rings)
+infants_cor_viscera <- cor(infants$Viscera_weight, infants$Rings)
+  
+  
+#Create a table with these values: columns = weights, rows = sex
+cor_table <- data.frame(whole_weight = c(males_cor_whole, females_cor_whole, infants_cor_whole), shucked_weight = c(males_cor_shucked, females_cor_shucked, infants_cor_shucked), viscera_weight = c(males_cor_viscera, females_cor_viscera, infants_cor_viscera), shell_weight = c(male_cor_shell,female_cor_shell, infant_cor_shell))
+row.names(cor_table) <- c("Males", "Females", "Infants")
+
+cor_table
+  
 ```
 
 e. Carry out a series of t-tests to examine whether the number of rings differs across the three sexes. Present the R output and interpret the results. 
