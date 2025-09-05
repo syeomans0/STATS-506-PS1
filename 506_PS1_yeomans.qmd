@@ -214,7 +214,7 @@ food_exp_df <- food_exp_df[food_exp_df$State != "XX",]
 nrow(food_exp_df)
 ```
 
-f. The four variables related to food expenditures. Rules to clean up the four food expenditures: For the all the food expenditure variables I got rid of any less than or equal to 0. Then
+f. The four variables related to food expenditures. Rules to clean up the four food expenditures: For the all the food expenditure variables I got rid of any less than or equal to 0. Then 
 
 ```{r}
 #| echo: true
@@ -229,11 +229,13 @@ nrow(food_exp_df)
 
 ```
 
-g. The variable related to number of times dining out. Rules used to clean up the times dining out variable: 
+g. The variable related to number of times dining out. Rules used to clean up the times dining out variable: there were a few rows where the times dining out were 0 but the person still said there was dining out cost so I dropped the rows where this was the case.
 
 ```{r}
 #| echo: true
 #Want to get rid of the people who said they didn't eat out but had dining out cost > 0
+food_exp_df <- food_exp_df[!(food_exp_df$Times_dine_out == 0 & food_exp_df$Dining_out_cost > 0), ]
+nrow(food_exp_df)
 ```
 
 h. Report your final number of observations after this cleaning.
