@@ -180,41 +180,67 @@ c. Restrict the data to those paying in US dollars (USD). Show that it worked by
 ```{r}
 #| echo: true
 dim(food_exp_df)
+nrow(food_exp_df)
 
 #Restrict to only USD
 food_exp_df <- food_exp_df[food_exp_df$Currency == "USD",]
-dim(food_exp_df)
+nrow(food_exp_df)
 ```
 For each of the following variables, clean them by removing any row with inappropriate data. For each variable, explain your rules for eliminating rows.
 
-d. The variable related to age.
+d. The variable related to age. Rules used to clean up the age variable: First, got rid of all minors below 18. And then, I got rid of anyone who was older than 100.
 
 ```{r}
 #| echo: true
+#First drop all NAs
+food_exp_df <- na.omit(food_exp_df)
+nrow(food_exp_df)
+
+#Get rid of minors:
+food_exp_df <- food_exp_df[food_exp_df$Age >= 18,]
+nrow(food_exp_df)
+
+#Get rid of any ages over 100: 
+food_exp_df <- food_exp_df[food_exp_df$Age <= 100, ]
+nrow(food_exp_df)
 ```
 
-e. The variable related to state. 
+e. The variable related to state. Rules used to clean up the state variable: Get rid of the value in state called XX.
 
 ```{r}
 #| echo: true
+#get rid of XX state abbreviation
+food_exp_df <- food_exp_df[food_exp_df$State != "XX",]
+nrow(food_exp_df)
 ```
 
-f. The four variables related to food expenditures.
+f. The four variables related to food expenditures. Rules to clean up the four food expenditures: For the all the food expenditure variables I got rid of any less than or equal to 0. Then
 
 ```{r}
 #| echo: true
+#get rid of 0s and negative values for all four variables related to food expenditures
+food_exp_df <- food_exp_df[food_exp_df$Total_food_expenditure > 0,]
+food_exp_df <- food_exp_df[food_exp_df$Grocery_cost > 0,]
+food_exp_df <- food_exp_df[food_exp_df$Dining_out_cost > 0,]
+food_exp_df <- food_exp_df[food_exp_df$Miscellaneous_cost > 0,]
+nrow(food_exp_df)
+
+#make sure total expenditure actually adds up all the expenditures? might be hard
+
 ```
 
-g. The variable related to number of times dining out.
+g. The variable related to number of times dining out. Rules used to clean up the times dining out variable: 
 
 ```{r}
 #| echo: true
+#Want to get rid of the people who said they didn't eat out but had dining out cost > 0
 ```
 
 h. Report your final number of observations after this cleaning.
 
 ```{r}
 #| echo: true
+dim(food_exp_df)
 ```
 
 
