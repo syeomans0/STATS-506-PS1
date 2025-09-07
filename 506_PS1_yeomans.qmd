@@ -161,7 +161,6 @@ a. Import the food expenditures data frame
 ```{r}
 #| echo: true
 food_exp_df <- read.csv("food_expenditure.csv")
-head(food_exp_df)
 ```
 
 b. Clean up the variable names by simplifying them.
@@ -179,7 +178,6 @@ c. Restrict the data to those paying in US dollars (USD). Show that it worked by
 
 ```{r}
 #| echo: true
-dim(food_exp_df)
 nrow(food_exp_df)
 
 #Restrict to only USD
@@ -205,12 +203,16 @@ food_exp_df <- food_exp_df[food_exp_df$Age <= 100, ]
 nrow(food_exp_df)
 ```
 
-e. The variable related to state. Rules used to clean up the state variable: Get rid of the value in state called XX.
+e. The variable related to state. Rules used to clean up the state variable: Get rid of the value in state called XX. There were also a few from PR (Puerto Rico) and I got rid of it, focusing on US states rather than territories.
 
 ```{r}
 #| echo: true
 #get rid of XX state abbreviation
 food_exp_df <- food_exp_df[food_exp_df$State != "XX",]
+nrow(food_exp_df)
+
+#get rid of PR
+food_exp_df <- food_exp_df[food_exp_df$State != "PR",]
 nrow(food_exp_df)
 ```
 
@@ -244,23 +246,33 @@ h. Report your final number of observations after this cleaning.
 #| echo: true
 dim(food_exp_df)
 ```
-
+The final number of observations after cleaning everything was 118. 
 
 ## Problem 3
 
-a.  
+a. Write function `nextCollatz` that given a positive integer, computes the next number in its Collatz sequence. Be sure to provide a reasonable error on an invalid input. Be sure to document your function. 
 
 ```{r}
 #| echo: true
+#' Function that ...
+#'
+#' @param
+#' @return
+nextCollatz <- function(){}
 ```
 
-b.  
+b. Create a function `collatzSequence` that returns the Collatz sequence for a given input. Use your `nextCollatz` function to perform the calculation. Be sure to provide a reasonable error on an invalid input. Be sure to document your function.
 
 ```{r}
 #| echo: true
+#' Function that ...
+#'
+#' @param
+#' @return
+collatzSequence <- function(){}
 ```
 
-c.  
+c. Use these functions to find the shortest and longest Collatz sequence starting with values between 100 and 500, inclusive. In the case of ties, report the lowest starting value.
 
 ```{r}
 #| echo: true
