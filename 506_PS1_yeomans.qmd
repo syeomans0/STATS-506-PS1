@@ -152,11 +152,11 @@ t.test(abalones_df$Rings[abalones_df$Sex == "M"], abalones_df$Rings[abalones_df$
 
 t.test(abalones_df$Rings[abalones_df$Sex == "F"], abalones_df$Rings[abalones_df$Sex == "I"])
 ```
-From the t-test it can be seen that there is evidence that the number of rings differs across all three sexes, as seen from the very small p-values. 
+From the three t-tests it can be seen that there is evidence that the number of rings differ across all three sexes, as seen from the very small p-values when comparing the sexes to each other. 
 
 ## Problem 2
 
-a. Import the food expenditures data frame
+a. Import the food expenditures data frame.
 
 ```{r}
 #| echo: true
@@ -207,27 +207,25 @@ e. The variable related to state. Rules used to clean up the state variable: Get
 
 ```{r}
 #| echo: true
-#get rid of XX state abbreviation
+#Get rid of XX state abbreviation:
 food_exp_df <- food_exp_df[food_exp_df$State != "XX",]
 nrow(food_exp_df)
 
-#get rid of PR
+#Get rid of PR: 
 food_exp_df <- food_exp_df[food_exp_df$State != "PR",]
 nrow(food_exp_df)
 ```
 
-f. The four variables related to food expenditures. Rules to clean up the four food expenditures: For the all the food expenditure variables I got rid of any less than or equal to 0. Then 
+f. The four variables related to food expenditures. Rules to clean up the four food expenditures: For the all the food expenditure variables I got rid of any value less than or equal to 0.
 
 ```{r}
 #| echo: true
-#get rid of 0s and negative values for all four variables related to food expenditures
+#Get rid of 0s and negative values for all four variables related to food expenditures:
 food_exp_df <- food_exp_df[food_exp_df$Total_food_expenditure > 0,]
 food_exp_df <- food_exp_df[food_exp_df$Grocery_cost > 0,]
 food_exp_df <- food_exp_df[food_exp_df$Dining_out_cost > 0,]
 food_exp_df <- food_exp_df[food_exp_df$Miscellaneous_cost > 0,]
 nrow(food_exp_df)
-
-#make sure total expenditure actually adds up all the expenditures? might be hard
 
 ```
 
@@ -235,7 +233,7 @@ g. The variable related to number of times dining out. Rules used to clean up th
 
 ```{r}
 #| echo: true
-#Want to get rid of the people who said they didn't eat out but had dining out cost > 0
+#Want to get rid of the people who said they didn't eat out but had dining out cost > 0:
 food_exp_df <- food_exp_df[!(food_exp_df$Times_dine_out == 0 & food_exp_df$Dining_out_cost > 0), ]
 nrow(food_exp_df)
 ```
@@ -258,23 +256,20 @@ a. Write function `nextCollatz` that given a positive integer, computes the next
 #'
 #' @param : a positive integer
 #' @return : the next value in the sequence (one value), positive integer
-nextCollatz <- function(x){
-  if (x <= 0) {
-    stop("x must be a positive integer")
+nextCollatz <- function(n){
+  if (n <= 0) {
+    stop("n must be a positive integer")
   }
-  if (!is.numeric(x)) {
-    stop("x must be numeric")
-  }
-  if (!is.numeric(x)) {
-    stop("x must be numeric")
+  if (!is.numeric(n)) {
+    stop("n must be numeric")
   }
   
-  if((x %% 2) == 0) {
-    x <- x / 2
-    return(x)
+  if((n %% 2) == 0) {
+    n <- n / 2
+    return(n)
 } else {
-    x <- 3 * x + 1
-    return(x)
+    n <- (3 * n) + 1
+    return(n)
 }
   
 }
@@ -291,21 +286,22 @@ b. Create a function `collatzSequence` that returns the Collatz sequence for a g
 #'
 #' @param : a positive integer 
 #' @return : a list containing the vector of the entries in the Collatz sequence, beginning at the input and ending at 1; and the length of the Collatz sequence
-collatzSequence <- function(x){
-  if (x <= 0) {
-    stop("x must be a positive integer")
+collatzSequence <- function(n){
+  if (n <= 0) {
+    stop("n must be a positive integer")
   }
-  if (!is.numeric(x)) {
-    stop("x must be numeric")
+  if (!is.numeric(n)) {
+    stop("n must be numeric")
   }
-  collatz_seq <- x
-  while (x != 1) {
-    if((x %% 2) == 0) {
-    x <- x / 2
+  
+  collatz_seq <- n
+  while (n != 1) {
+    if((n %% 2) == 0) {
+    n <- n / 2
 } else {
-    x <- 3 * x + 1
+    n <- (3 * n) + 1
 }
-    collatz_seq <- c(collatz_seq, x)
+    collatz_seq <- c(collatz_seq, n)
   }
   return(list(collatz_seq, length(collatz_seq)))
 }
@@ -318,5 +314,45 @@ c. Use these functions to find the shortest and longest Collatz sequence startin
 
 ```{r}
 #| echo: true
+#Set the shortest and longest sequence to be kind of nonsense 
+#so that we can update them right away starting with the first value 100
+shortest_seq_length <- 1000
+longest_seq_length <- 1
 
+# In the case of ties, report the lowest starting value, currently don't have ties so NAs to start
+tie_breaker_shortest <- NA
+tie_breaker_longest <- NA
+
+#Go through 100 - 500 inclusive and check against our starting values above
+for (i in 100:500) {
+  get_seq <- collatzSequence(i)
+  seq_length <- get_seq[[2]] #the length value from the list in the sequence function I wrote earlier
+  
+#if the sequence length from sequence function is shorter than 1000 want to update it to be the length from seqeuence function and set the start value to be i
+  if (seq_length < shortest_seq_length) {
+    shortest_seq_length <- seq_length
+    tie_breaker_shortest <- i
+  } #in case the lengths are exactly equal we have to find the smaller starting value
+  else if (seq_length == shortest_seq_length) {
+    if (i < tie_breaker_shortest) {
+      tie_breaker_shortest <- i
+    }
+  }
+  #use same code but do it for the longest one
+  if (seq_length > longest_seq_length) {
+    longest_seq_length <- seq_length
+    tie_breaker_longest <- i
+  } else if (seq_length == longest_seq_length) {
+    if (i < tie_breaker_longest) {
+      tie_breaker_longest <- i
+    }
+  }
+}
+
+cat("The shortest sequence has length of", shortest_seq_length, "and it starts with value", tie_breaker_shortest,".")
+
+cat(" The longest sequence has length of", longest_seq_length, "and it starts with value", tie_breaker_longest, ".")
 ```
+ChatGPT told me to use `cat()` when I gave it my code when my print statements weren't working properly. I used this website to check if my outputs made sense <https://www.dcode.fr/collatz-conjecture>, which they did. 
+
+Sources for this problem: <https://www.w3schools.com/r/r_if_else.asp>, <https://stackoverflow.com/questions/15589601/print-string-and-variable-contents-on-the-same-line-in-r>
