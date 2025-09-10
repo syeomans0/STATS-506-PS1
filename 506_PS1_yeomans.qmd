@@ -5,6 +5,8 @@ format: html
 editor: visual
 ---
 
+Github URL: <https://github.com/syeomans0/STATS-506-PS1>
+
 ## Problem 1
 
 Download the data set about abalones (a type of sea snail) and do the following:
