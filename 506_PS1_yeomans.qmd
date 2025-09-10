@@ -14,18 +14,25 @@ a.  Import the data into a data.frame and give the appropriate column names.
 ```{r}
 #| echo: true
 abalones_df <- read.csv("abalone.data", header = FALSE)
-head(abalones_df)
 ```
 
 ```{r}
 #| echo: true
-#Rename the columns based on what is in the abalone name file, names of variables are the following:
+#Rename the columns based on what is in the abalone name file
+#Names of variables are the following:
 #V1 = Sex, V2 = Length, V3 = Diameter, V4 = Height 
 #V5 = Whole weight, V6 = Shucked weight, V7 = Viscera weight
 #V8 = Shell weight, V9 = Rings
 
-colnames(abalones_df) <- c("Sex", "Length", "Diameter", "Height", 
-                           "Whole_weight", "Shucked_weight", "Viscera_weight", "Shell_weight", "Rings")
+colnames(abalones_df) <- c("Sex", 
+                           "Length", 
+                           "Diameter", 
+                           "Height", 
+                           "Whole_weight", 
+                           "Shucked_weight", 
+                           "Viscera_weight", 
+                           "Shell_weight", 
+                           "Rings")
 
 head(abalones_df)
 
@@ -81,7 +88,7 @@ print(infant_cor_shell)
 
 ```
 
-The sex with the highest correlation between shell weight and rings is infants.
+The sex with the highest correlation between shell weight and rings is infants. I looked up how to make a new data frame from an existing one and used the source below to help me make the three new ones based on each of the different sexes.
 
 Source: <https://stackoverflow.com/questions/43347110/how-to-create-new-dataframe-from-existing-dataframe-selecting-rows-matching-two>
 
@@ -99,8 +106,6 @@ The most number of rings for an abalone in this data set is $29$. The weights of
 
 Note: originally had the `max` function on its own, but the output looked bad so I moved it to the inside of the new data frame I created.
 
-Source: <https://stackoverflow.com/questions/24212739/how-to-find-the-highest-value-of-a-column-in-a-data-frame-in-r>
-
 iv. What percentage of abalones have a viscera weight larger than their shell weight?
 
 ```{r}
@@ -108,7 +113,7 @@ iv. What percentage of abalones have a viscera weight larger than their shell we
 viscera_greater_shell <- sum(abalones_df$Viscera_weight > abalones_df$Shell_weight)
 viscera_greater_shell
 
-#Total number of abalones are the number of observations in the data frame which is 4177
+#Total number of abalones are the number of observations in the data frame - 4177
 percentage <- 272/4177
 percentage * 100
 ```
@@ -118,7 +123,8 @@ d. Create a table of correlations between weights and rings, within each sex. Th
 
 ```{r}
 #| echo: true
-#Have to find the correlations for each of the other weights: whole, shucked, and viscera within each sex
+#Have to find the correlations for each of the other weights
+#whole, shucked, and viscera within each sex
 males_cor_whole <- cor(males$Whole_weight, males$Rings)
 females_cor_whole <- cor(females$Whole_weight, females$Rings)
 infants_cor_whole <- cor(infants$Whole_weight, infants$Rings)
@@ -133,7 +139,15 @@ infants_cor_viscera <- cor(infants$Viscera_weight, infants$Rings)
   
   
 #Create a table with these values: columns = weights, rows = sex
-cor_table <- data.frame(whole_weight = c(males_cor_whole, females_cor_whole, infants_cor_whole), shucked_weight = c(males_cor_shucked, females_cor_shucked, infants_cor_shucked), viscera_weight = c(males_cor_viscera, females_cor_viscera, infants_cor_viscera), shell_weight = c(male_cor_shell,female_cor_shell, infant_cor_shell))
+cor_table <- data.frame(whole_weight = 
+                          c(males_cor_whole, females_cor_whole, infants_cor_whole), 
+                        shucked_weight = 
+                          c(males_cor_shucked, females_cor_shucked, infants_cor_shucked), 
+                        viscera_weight = 
+                          c(males_cor_viscera, females_cor_viscera, infants_cor_viscera), 
+                        shell_weight = 
+                          c(male_cor_shell,female_cor_shell, infant_cor_shell))
+
 row.names(cor_table) <- c("Males", "Females", "Infants")
 
 cor_table
@@ -146,11 +160,14 @@ e. Carry out a series of t-tests to examine whether the number of rings differs 
 ```{r}
 #| echo: true
 #Have to compare M to F, M to I, and F to I
-t.test(abalones_df$Rings[abalones_df$Sex == "M"], abalones_df$Rings[abalones_df$Sex == "F"])
+t.test(abalones_df$Rings[abalones_df$Sex == "M"], 
+       abalones_df$Rings[abalones_df$Sex == "F"])
 
-t.test(abalones_df$Rings[abalones_df$Sex == "M"], abalones_df$Rings[abalones_df$Sex == "I"])
+t.test(abalones_df$Rings[abalones_df$Sex == "M"], 
+       abalones_df$Rings[abalones_df$Sex == "I"])
 
-t.test(abalones_df$Rings[abalones_df$Sex == "F"], abalones_df$Rings[abalones_df$Sex == "I"])
+t.test(abalones_df$Rings[abalones_df$Sex == "F"], 
+       abalones_df$Rings[abalones_df$Sex == "I"])
 ```
 From the three t-tests it can be seen that there is evidence that the number of rings differ across all three sexes, as seen from the very small p-values when comparing the sexes to each other. 
 
@@ -167,10 +184,18 @@ b. Clean up the variable names by simplifying them.
 
 ```{r}
 #| echo: true
-colnames(food_exp_df) <- c("ID", "Age", "Household_size", "State", "Currency", 
-                           "Total_food_expenditure", "Grocery_cost", 
-                           "Dining_out_cost", "Miscellaneous_cost", "Times_dine_out", 
-                           "Alcohol", "Food_assist")
+colnames(food_exp_df) <- c("ID", 
+                           "Age", 
+                           "Household_size", 
+                           "State", 
+                           "Currency", 
+                           "Total_food_expenditure", 
+                           "Grocery_cost", 
+                           "Dining_out_cost", 
+                           "Miscellaneous_cost", 
+                           "Times_dine_out", 
+                           "Alcohol", 
+                           "Food_assist")
 head(food_exp_df)
 ```
 
@@ -221,10 +246,18 @@ f. The four variables related to food expenditures. Rules to clean up the four f
 ```{r}
 #| echo: true
 #Get rid of 0s and negative values for all four variables related to food expenditures:
+#Total
 food_exp_df <- food_exp_df[food_exp_df$Total_food_expenditure > 0,]
+
+#Grocery cost
 food_exp_df <- food_exp_df[food_exp_df$Grocery_cost > 0,]
+
+#Dining out cost
 food_exp_df <- food_exp_df[food_exp_df$Dining_out_cost > 0,]
+
+#Miscellaneous
 food_exp_df <- food_exp_df[food_exp_df$Miscellaneous_cost > 0,]
+
 nrow(food_exp_df)
 
 ```
@@ -235,6 +268,7 @@ g. The variable related to number of times dining out. Rules used to clean up th
 #| echo: true
 #Want to get rid of the people who said they didn't eat out but had dining out cost > 0:
 food_exp_df <- food_exp_df[!(food_exp_df$Times_dine_out == 0 & food_exp_df$Dining_out_cost > 0), ]
+
 nrow(food_exp_df)
 ```
 
@@ -285,7 +319,7 @@ b. Create a function `collatzSequence` that returns the Collatz sequence for a g
 #' Function that gives the Collatz sequence after getting a number, stopping at 1
 #'
 #' @param : a positive integer 
-#' @return : a list containing the vector of the entries in the Collatz sequence, beginning at the input and ending at 1; and the length of the Collatz sequence
+#' @return : a list containing the vector of the entries in the Collatz sequence beginning at the input and ending at 1; and the length of the Collatz sequence
 collatzSequence <- function(n){
   if (n <= 0) {
     stop("n must be a positive integer")
@@ -332,8 +366,9 @@ for (i in 100:500) {
   if (seq_length < shortest_seq_length) {
     shortest_seq_length <- seq_length
     tie_breaker_shortest <- i
-  } #in case the lengths are exactly equal we have to find the smaller starting value
-  else if (seq_length == shortest_seq_length) {
+  } 
+#in case the lengths are exactly equal we have to find the smaller starting value
+  if (seq_length == shortest_seq_length) {
     if (i < tie_breaker_shortest) {
       tie_breaker_shortest <- i
     }
@@ -342,7 +377,9 @@ for (i in 100:500) {
   if (seq_length > longest_seq_length) {
     longest_seq_length <- seq_length
     tie_breaker_longest <- i
-  } else if (seq_length == longest_seq_length) {
+  } 
+  
+  if (seq_length == longest_seq_length) {
     if (i < tie_breaker_longest) {
       tie_breaker_longest <- i
     }
@@ -353,6 +390,7 @@ cat("The shortest sequence has length of", shortest_seq_length, "and it starts w
 
 cat(" The longest sequence has length of", longest_seq_length, "and it starts with value", tie_breaker_longest, ".")
 ```
-ChatGPT told me to use `cat()` when I gave it my code when my print statements weren't working properly. I used this website to check if my outputs made sense <https://www.dcode.fr/collatz-conjecture>, which they did. 
+I used the second source to help me write a print statement that combined string and my variables but I ran into some issues when using that so ChatGPT told me to use `cat()` instead so I wouldn't get an error. I used this website to check if my outputs made sense <https://www.dcode.fr/collatz-conjecture>, which they did. I had `else if` at first to check the length equality after looking at the first source listed. After looking back at this, I found the `else if` confusing so I just changed it to all if statements.
 
 Sources for this problem: <https://www.w3schools.com/r/r_if_else.asp>, <https://stackoverflow.com/questions/15589601/print-string-and-variable-contents-on-the-same-line-in-r>
+
