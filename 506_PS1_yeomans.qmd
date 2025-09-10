@@ -1,7 +1,9 @@
 ---
 title: "STATS 506 - Problem Set #1"
 author: "Sydney Yeomans"
-format: html
+format:
+  html:
+    embed-resources: true
 editor: visual
 ---
 
